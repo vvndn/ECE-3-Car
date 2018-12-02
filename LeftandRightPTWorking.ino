@@ -54,7 +54,7 @@ void loop() {
   }
   //turn right
   else if (leftVal >= lWhite && rightVal <= rBlack) {
-    analogWrite(3, 50);
+    analogWrite(3, 0);
     //delay(1000);
     analogWrite(9, 250);
     
@@ -70,7 +70,7 @@ void loop() {
   //turnr left
   else if (leftVal <= lBlack && rightVal >= rWhite) {
     analogWrite(motorR, 250);
-    analogWrite(motorL, 50);
+    analogWrite(motorL, 0);
 //    delay(300);
 //    analogWrite(motorL, 0);
 //    delay(400);
@@ -80,14 +80,19 @@ void loop() {
     digitalWrite(ledPinRed, LOW);
     //delay(500);
   }
+  else if (leftVal <= lBlack && rightVal <= rBlack) {
+    analogWrite(motorL, 0);
+    analogWrite(motorR, 0);
+    digitalWrite(ledPinRed, HIGH);
+    digitalWrite(ledPinBlue, HIGH);
+    digitalWrite(ledPinGreen, LOW);   
+  }
   else {
     analogWrite(motorL, 0);
     analogWrite(motorR, 0);
     digitalWrite(ledPinRed, HIGH);
     digitalWrite(ledPinBlue, HIGH);
-    digitalWrite(ledPinGreen, LOW);
-    //delay(300);
-    
+    digitalWrite(ledPinGreen, HIGH);
   }
 
   String s1 = String();
