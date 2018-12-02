@@ -77,7 +77,7 @@ void loop() {
     digitalWrite(ledPinRed, HIGH);
     digitalWrite(ledPinBlue, HIGH);
     digitalWrite(ledPinGreen, LOW); 
-    delay(10000);  
+    delay(2000);  
   }
   else {
     analogWrite(motorL, 0);
