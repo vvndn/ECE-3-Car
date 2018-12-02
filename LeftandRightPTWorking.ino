@@ -17,11 +17,13 @@ int leftVal = 0;
 int midVal = 0;
 int rightVal = 0;    
 
-int rBlack = 475;
-int rWhite = 650;
+int rBlack = 550;
+int rWhite = 700;
+int rAvg = 625;
 
 int lBlack = 500;
 int lWhite = 700;
+int lAvg = 600;
 
 void setup() {
   // put your setup code here, to run once:
@@ -46,46 +48,36 @@ void loop() {
 
 
   //go straight
-  if (leftVal >= lWhite && rightVal >= rWhite) {
+  if (leftVal >= lAvg && rightVal >= rAvg) {
     analogWrite(motorL, 150);
     analogWrite(motorR, 150);
     digitalWrite(ledPinGreen, HIGH);
-    //delay(500);
   }
   //turn right
-  else if (leftVal >= lWhite && rightVal <= rBlack) {
+  else if (leftVal >= lAvg && rightVal <= rAvg) {
     analogWrite(3, 0);
-    //delay(1000);
     analogWrite(9, 250);
-    
-    //delay(300);
-    //analogWrite(motorR, 0);
-    //delay(400);
-    //analogWrite(motorR, 100);
     digitalWrite(ledPinRed, HIGH);
     digitalWrite(ledPinGreen, LOW);
     digitalWrite(ledPinBlue, LOW);
     //delay(500);
   }
-  //turnr left
-  else if (leftVal <= lBlack && rightVal >= rWhite) {
+  //turn left
+  else if (leftVal <= lAvg && rightVal >= rAvg) {
     analogWrite(motorR, 250);
     analogWrite(motorL, 0);
-//    delay(300);
-//    analogWrite(motorL, 0);
-//    delay(400);
-//    analogWrite(motorL, 100);
     digitalWrite(ledPinBlue, HIGH);
     digitalWrite(ledPinGreen, LOW);
     digitalWrite(ledPinRed, LOW);
     //delay(500);
   }
-  else if (leftVal <= lBlack && rightVal <= rBlack) {
+  else if (leftVal <= lAvg && rightVal <= rAvg) {
     analogWrite(motorL, 0);
     analogWrite(motorR, 0);
     digitalWrite(ledPinRed, HIGH);
     digitalWrite(ledPinBlue, HIGH);
-    digitalWrite(ledPinGreen, LOW);   
+    digitalWrite(ledPinGreen, LOW); 
+    delay(10000);  
   }
   else {
     analogWrite(motorL, 0);
