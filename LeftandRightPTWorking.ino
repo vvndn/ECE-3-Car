@@ -26,8 +26,8 @@ int lWhite = 700;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(motorL, OUTPUT);
-  pinMode(motorR, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(3, OUTPUT);
   pinMode(ledPinRed, OUTPUT);
   pinMode(ledPinGreen, OUTPUT);
   pinMode(ledPinBlue, OUTPUT);
@@ -54,8 +54,9 @@ void loop() {
   }
   //turn right
   else if (leftVal >= lWhite && rightVal <= rBlack) {
-    analogWrite(motorR, 0);
-    analogWrite(motorL, 150);
+    analogWrite(3, 50);
+    //delay(1000);
+    analogWrite(9, 250);
     
     //delay(300);
     //analogWrite(motorR, 0);
@@ -68,8 +69,8 @@ void loop() {
   }
   //turnr left
   else if (leftVal <= lBlack && rightVal >= rWhite) {
-    analogWrite(motorR, 150);
-    analogWrite(motorL, 0);
+    analogWrite(motorR, 250);
+    analogWrite(motorL, 50);
 //    delay(300);
 //    analogWrite(motorL, 0);
 //    delay(400);
