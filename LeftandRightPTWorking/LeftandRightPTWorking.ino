@@ -1,5 +1,7 @@
 #include <string.h>
 
+int status;
+
 int ledPinRed = 5;
 int ledPinGreen = 10;
 int ledPinBlue = 11;
@@ -17,12 +19,12 @@ int leftVal = 0;
 int midVal = 0;
 int rightVal = 0;    
 
-int rBlack = 550;
-int rWhite = 700;
-int rAvg = 625;
+//int rBlack = 550;
+//int rWhite = 700;
+int rAvg = 700;
 
-int lBlack = 500;
-int lWhite = 700;
+//int lBlack = 500;
+//int lWhite = 700;
 int lAvg = 600;
 
 void setup() {
@@ -33,11 +35,15 @@ void setup() {
   pinMode(ledPinRed, OUTPUT);
   pinMode(ledPinGreen, OUTPUT);
   pinMode(ledPinBlue, OUTPUT);
+  status = 1;
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
+  if (status == 0) {
+    while(1);
+  }
   //delay(200);
   //read left and right inputs
   leftVal = analogRead(leftPin);
@@ -49,14 +55,14 @@ void loop() {
 
   //go straight
   if (leftVal >= lAvg && rightVal >= rAvg) {
-    analogWrite(motorL, 150);
-    analogWrite(motorR, 150);
+    analogWrite(motorL, 100);
+    analogWrite(motorR, 100);
     digitalWrite(ledPinGreen, HIGH);
   }
   //turn right
   else if (leftVal >= lAvg && rightVal <= rAvg) {
     analogWrite(3, 0);
-    analogWrite(9, 250);
+    analogWrite(9, 150);
     digitalWrite(ledPinRed, HIGH);
     digitalWrite(ledPinGreen, LOW);
     digitalWrite(ledPinBlue, LOW);
@@ -64,7 +70,7 @@ void loop() {
   }
   //turn left
   else if (leftVal <= lAvg && rightVal >= rAvg) {
-    analogWrite(motorR, 250);
+    analogWrite(motorR, 150);
     analogWrite(motorL, 0);
     digitalWrite(ledPinBlue, HIGH);
     digitalWrite(ledPinGreen, LOW);
@@ -77,7 +83,8 @@ void loop() {
     digitalWrite(ledPinRed, HIGH);
     digitalWrite(ledPinBlue, HIGH);
     digitalWrite(ledPinGreen, LOW); 
-    delay(2000);  
+    status = 0;
+    //delay(2000);  
   }
   else {
     analogWrite(motorL, 0);
@@ -96,6 +103,6 @@ void loop() {
   String ri = String("R: ");
   s2 = ri + rightVal;
   Serial.println(s2);
-  //delay(300);
+  //delay(500);
 
 }
