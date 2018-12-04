@@ -40,10 +40,10 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
-  if (status == 0) {
-    while(1);
-  }
+//
+//  if (status == 0) {
+//    while(1);
+//  }
   //delay(200);
   //read left and right inputs
   leftVal = analogRead(leftPin);
@@ -94,15 +94,21 @@ void loop() {
     digitalWrite(ledPinGreen, HIGH);
   }
 
-  String s1 = String();
-  String li = String("L: ");
-  s1 = li + leftVal;
-  Serial.println(s1);
+//  String s1 = String();
+//  String li = String("L: ");
+//  s1 = li + leftVal;
+//  Serial.println(s1);
+//  
+//
+//  String s2 = String();
+//  String ri = String("R: ");
+//  s2 = ri + rightVal;
+//  Serial.println(s2);
 
-  String s2 = String();
-  String ri = String("R: ");
-  s2 = ri + rightVal;
-  Serial.println(s2);
+    Serial.print(leftVal);
+    Serial.print(' ');
+    Serial.print(rightVal);
+    Serial.print('\n');
   //delay(500);
 
 }
